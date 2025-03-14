@@ -21,6 +21,8 @@
   --success: #4ade80;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --transition: all 0.3s ease;
+  --input-bg: #f9fafb;
+  --input-border: #e0e0e0;
 }
 
   /* Allgemeine Stile */
@@ -29,7 +31,7 @@
     color: var(--text-dark);
     line-height: 1.6;
     background-color: var(--background);
-    background-image: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-image: linear-gradient(135deg, var(--background) 0%, var(--background) 100%);
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -79,19 +81,20 @@
   input, select {
     width: 100%;
     padding: 12px 16px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--input-border);
     border-radius: 8px;
     font-size: 1rem;
     transition: var(--transition);
-    background-color: #f9fafb;
+    background-color: var(--input-bg);
     color: var(--text-dark);
+    box-sizing: border-box;
   }
 
   input:focus, select:focus {
     outline: none;
     border-color: var(--primary-light);
     box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
-    background-color: #fff;
+    background-color: var(--card-bg);
   }
 
   button {
@@ -162,6 +165,19 @@
   }
 
   /* Animation für Input-Felder */
+  .input-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    pointer-events: none;
+  }
+
+  .input-wrapper {
+    position: relative;
+  }
+
   input:not(:placeholder-shown) + .input-icon,
   select:not([value=""]) + .input-icon {
     color: var(--primary-color);
@@ -210,6 +226,8 @@
   --text-dark: #e2e8f0;
   --text-light: #a0aec0;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --input-bg: #2a3446;
+  --input-border: #374151;
 }
 
 /* Add theme toggle container */
@@ -406,8 +424,8 @@ document.addEventListener('DOMContentLoaded', function() {
             hoursStudied, previousScores, extracurricular, sleepHours, practicePapers
         );
         
-        // Runde das Ergebnis auf 2 Dezimalstellen
-        const roundedPrediction = Math.max(0, Math.min(100, prediction)).toFixed(2);
+// Runde das Ergebnis auf 2 Dezimalstellen
+const roundedPrediction = Math.max(0, Math.min(100, prediction)).toFixed(2);
         
         // Zeige das Ergebnis an
         resultElement.textContent = roundedPrediction;
