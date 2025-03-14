@@ -1,36 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Performance Predictor</title>
+    <title>Schülerleistung Vorhersage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Predict Student Performance</h1>
-    <form id="prediction-form">
-        <label for="hours_studied">Hours Studied:</label>
-        <input type="number" id="hours_studied" required><br>
+    <div class="container">
+        <h1>Schülerleistung Vorhersage</h1>
         
-        <label for="previous_scores">Previous Scores:</label>
-        <input type="number" id="previous_scores" required><br>
-        
-        <label for="extracurricular">Extracurricular Activities:</label>
-        <select id="extracurricular" required>
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-        </select><br>
-        
-        <label for="sleep_hours">Sleep Hours:</label>
-        <input type="number" id="sleep_hours" required><br>
-        
-        <label for="practice_papers">Sample Question Papers Practiced:</label>
-        <input type="number" id="practice_papers" required><br>
+        <form id="prediction-form">
+            <div class="form-group">
+                <label for="hours_studied">
+                    Lernstunden pro Woche
+                    <span class="tooltip">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="tooltip-text">Durchschnittliche Anzahl der Stunden, die wöchentlich für das Lernen aufgewendet werden.</span>
+                    </span>
+                </label>
+                <div class="input-wrapper">
+                    <input type="number" id="hours_studied" min="0" max="50" placeholder="z.B. 10" required>
+                    <i class="fas fa-clock input-icon"></i>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="previous_scores">
+                    Bisherige Punktzahl
+                    <span class="tooltip">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="tooltip-text">Durchschnittspunktzahl aus vorherigen Tests oder Prüfungen (0-100).</span>
+                    </span>
+                </label>
+                <div class="input-wrapper">
+                    <input type="number" id="previous_scores" min="0" max="100" placeholder="z.B. 75" required>
+                    <i class="fas fa-chart-line input-icon"></i>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="extracurricular">
+                    Außerschulische Aktivitäten
+                    <span class="tooltip">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="tooltip-text">Nimmt der Schüler an außerschulischen Aktivitäten teil?</span>
+                    </span>
+                </label>
+                <div class="input-wrapper">
+                    <select id="extracurricular" required>
+                        <option value="" disabled selected>Bitte auswählen</option>
+                        <option value="1">Ja</option>
+                        <option value="0">Nein</option>
+                    </select>
+                    <i class="fas fa-basketball-ball input-icon"></i>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="sleep_hours">
+                    Schlafstunden pro Nacht
+                    <span class="tooltip">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="tooltip-text">Durchschnittliche Anzahl der Schlafstunden pro Nacht.</span>
+                    </span>
+                </label>
+                <div class="input-wrapper">
+                    <input type="number" id="sleep_hours" min="0" max="12" step="0.5" placeholder="z.B. 7.5" required>
+                    <i class="fas fa-moon input-icon"></i>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="practice_papers">
+                    Geübte Übungsblätter
+                    <span class="tooltip">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="tooltip-text">Anzahl der bearbeiteten Übungsblätter oder Probeprüfungen.</span>
+                    </span>
+                </label>
+                <div class="input-wrapper">
+                    <input type="number" id="practice_papers" min="0" max="50" placeholder="z.B. 5" required>
+                    <i class="fas fa-file-alt input-icon"></i>
+                </div>
+            </div>
 
-        <button type="submit">Predict</button>
-    </form>
+            <button type="submit">
+                <i class="fas fa-calculator"></i> Leistung vorhersagen
+            </button>
+        </form>
+        
+        <div class="result-container" id="result-container">
+            <div class="result-label">Vorhergesagter Leistungsindex</div>
+            <div class="result-value" id="result">--</div>
+            <div id="performance-message"></div>
+        </div>
+
+
+    </div>
+
     
-    <h2 id="result"></h2>
 
     <script src="script.js"></script>
 </body>
